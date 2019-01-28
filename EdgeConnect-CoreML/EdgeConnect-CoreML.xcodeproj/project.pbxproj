@@ -1,0 +1,381 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3741E7A021FD51AB00C745CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3741E79F21FD51AB00C745CE /* AppDelegate.swift */; };
+		3741E7A221FD51AB00C745CE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3741E7A121FD51AB00C745CE /* ViewController.swift */; };
+		3741E7A521FD51AB00C745CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3741E7A321FD51AB00C745CE /* Main.storyboard */; };
+		3741E7A721FD51AD00C745CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3741E7A621FD51AD00C745CE /* Assets.xcassets */; };
+		3741E7AA21FD51AD00C745CE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3741E7A821FD51AD00C745CE /* LaunchScreen.storyboard */; };
+		3741E7B421FD53F800C745CE /* edge.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3741E7B221FD53F800C745CE /* edge.mlmodel */; };
+		3741E7B521FD53F800C745CE /* inpainting.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3741E7B321FD53F800C745CE /* inpainting.mlmodel */; };
+		3741E7B921FDB77E00C745CE /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3741E7B621FDB77E00C745CE /* UIImage+Resize.swift */; };
+		3741E7BA21FDB77E00C745CE /* UIImage+CoreML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3741E7B721FDB77E00C745CE /* UIImage+CoreML.swift */; };
+		3741E7BB21FDB77E00C745CE /* EdgeConnectError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3741E7B821FDB77E00C745CE /* EdgeConnectError.swift */; };
+		3741E7C121FDE50000C745CE /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3741E7C021FDE50000C745CE /* Math.swift */; };
+		3741E7C421FDF19600C745CE /* MLMultiArray+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3741E7C221FDF19600C745CE /* MLMultiArray+Image.swift */; };
+		3741E7C521FDF19600C745CE /* CGImage+RawBytes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3741E7C321FDF19600C745CE /* CGImage+RawBytes.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3741E79C21FD51AB00C745CE /* EdgeConnect-CoreML.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EdgeConnect-CoreML.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3741E79F21FD51AB00C745CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3741E7A121FD51AB00C745CE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3741E7A421FD51AB00C745CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3741E7A621FD51AD00C745CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3741E7A921FD51AD00C745CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3741E7AB21FD51AD00C745CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3741E7B221FD53F800C745CE /* edge.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = edge.mlmodel; sourceTree = "<group>"; };
+		3741E7B321FD53F800C745CE /* inpainting.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = inpainting.mlmodel; sourceTree = "<group>"; };
+		3741E7B621FDB77E00C745CE /* UIImage+Resize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
+		3741E7B721FDB77E00C745CE /* UIImage+CoreML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+CoreML.swift"; sourceTree = "<group>"; };
+		3741E7B821FDB77E00C745CE /* EdgeConnectError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EdgeConnectError.swift; sourceTree = "<group>"; };
+		3741E7C021FDE50000C745CE /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
+		3741E7C221FDF19600C745CE /* MLMultiArray+Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MLMultiArray+Image.swift"; sourceTree = "<group>"; };
+		3741E7C321FDF19600C745CE /* CGImage+RawBytes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGImage+RawBytes.swift"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3741E79921FD51AB00C745CE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3741E79321FD51AB00C745CE = {
+			isa = PBXGroup;
+			children = (
+				3741E79E21FD51AB00C745CE /* EdgeConnect-CoreML */,
+				3741E79D21FD51AB00C745CE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3741E79D21FD51AB00C745CE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3741E79C21FD51AB00C745CE /* EdgeConnect-CoreML.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3741E79E21FD51AB00C745CE /* EdgeConnect-CoreML */ = {
+			isa = PBXGroup;
+			children = (
+				3741E7C321FDF19600C745CE /* CGImage+RawBytes.swift */,
+				3741E7C221FDF19600C745CE /* MLMultiArray+Image.swift */,
+				3741E7C021FDE50000C745CE /* Math.swift */,
+				3741E7B821FDB77E00C745CE /* EdgeConnectError.swift */,
+				3741E7B721FDB77E00C745CE /* UIImage+CoreML.swift */,
+				3741E7B621FDB77E00C745CE /* UIImage+Resize.swift */,
+				3741E7B121FD53C500C745CE /* coreml_models */,
+				3741E79F21FD51AB00C745CE /* AppDelegate.swift */,
+				3741E7A121FD51AB00C745CE /* ViewController.swift */,
+				3741E7A321FD51AB00C745CE /* Main.storyboard */,
+				3741E7A621FD51AD00C745CE /* Assets.xcassets */,
+				3741E7A821FD51AD00C745CE /* LaunchScreen.storyboard */,
+				3741E7AB21FD51AD00C745CE /* Info.plist */,
+			);
+			path = "EdgeConnect-CoreML";
+			sourceTree = "<group>";
+		};
+		3741E7B121FD53C500C745CE /* coreml_models */ = {
+			isa = PBXGroup;
+			children = (
+				3741E7B221FD53F800C745CE /* edge.mlmodel */,
+				3741E7B321FD53F800C745CE /* inpainting.mlmodel */,
+			);
+			path = coreml_models;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3741E79B21FD51AB00C745CE /* EdgeConnect-CoreML */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3741E7AE21FD51AD00C745CE /* Build configuration list for PBXNativeTarget "EdgeConnect-CoreML" */;
+			buildPhases = (
+				3741E79821FD51AB00C745CE /* Sources */,
+				3741E79921FD51AB00C745CE /* Frameworks */,
+				3741E79A21FD51AB00C745CE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "EdgeConnect-CoreML";
+			productName = "EdgeConnect-CoreML";
+			productReference = 3741E79C21FD51AB00C745CE /* EdgeConnect-CoreML.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3741E79421FD51AB00C745CE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1010;
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = "马丹";
+				TargetAttributes = {
+					3741E79B21FD51AB00C745CE = {
+						CreatedOnToolsVersion = 10.1;
+					};
+				};
+			};
+			buildConfigurationList = 3741E79721FD51AB00C745CE /* Build configuration list for PBXProject "EdgeConnect-CoreML" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3741E79321FD51AB00C745CE;
+			productRefGroup = 3741E79D21FD51AB00C745CE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3741E79B21FD51AB00C745CE /* EdgeConnect-CoreML */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3741E79A21FD51AB00C745CE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3741E7AA21FD51AD00C745CE /* LaunchScreen.storyboard in Resources */,
+				3741E7A721FD51AD00C745CE /* Assets.xcassets in Resources */,
+				3741E7A521FD51AB00C745CE /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3741E79821FD51AB00C745CE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3741E7C521FDF19600C745CE /* CGImage+RawBytes.swift in Sources */,
+				3741E7A221FD51AB00C745CE /* ViewController.swift in Sources */,
+				3741E7A021FD51AB00C745CE /* AppDelegate.swift in Sources */,
+				3741E7B421FD53F800C745CE /* edge.mlmodel in Sources */,
+				3741E7BA21FDB77E00C745CE /* UIImage+CoreML.swift in Sources */,
+				3741E7B921FDB77E00C745CE /* UIImage+Resize.swift in Sources */,
+				3741E7B521FD53F800C745CE /* inpainting.mlmodel in Sources */,
+				3741E7BB21FDB77E00C745CE /* EdgeConnectError.swift in Sources */,
+				3741E7C121FDE50000C745CE /* Math.swift in Sources */,
+				3741E7C421FDF19600C745CE /* MLMultiArray+Image.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		3741E7A321FD51AB00C745CE /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3741E7A421FD51AB00C745CE /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		3741E7A821FD51AD00C745CE /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3741E7A921FD51AD00C745CE /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3741E7AC21FD51AD00C745CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		3741E7AD21FD51AD00C745CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3741E7AF21FD51AD00C745CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LXGRKDMEQU;
+				INFOPLIST_FILE = "EdgeConnect-CoreML/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Home.EdgeConnect-CoreML";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3741E7B021FD51AD00C745CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LXGRKDMEQU;
+				INFOPLIST_FILE = "EdgeConnect-CoreML/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Home.EdgeConnect-CoreML";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3741E79721FD51AB00C745CE /* Build configuration list for PBXProject "EdgeConnect-CoreML" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3741E7AC21FD51AD00C745CE /* Debug */,
+				3741E7AD21FD51AD00C745CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3741E7AE21FD51AD00C745CE /* Build configuration list for PBXNativeTarget "EdgeConnect-CoreML" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3741E7AF21FD51AD00C745CE /* Debug */,
+				3741E7B021FD51AD00C745CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3741E79421FD51AB00C745CE /* Project object */;
+}
