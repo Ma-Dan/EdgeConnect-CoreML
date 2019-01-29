@@ -173,6 +173,37 @@ class ViewController: UIViewController {
         }
     }
 
+    func mergeOutputImage(image: CVPixelBuffer, inpainting: MLMultiArray, mask: MLMultiArray, output: MLMultiArray, height: Int, width: Int) {
+        CVPixelBufferLockBaseAddress(image, CVPixelBufferLockFlags(rawValue: 0))
+        let baseAddress = CVPixelBufferGetBaseAddress(image)
+        let bytesPerRow = CVPixelBufferGetBytesPerRow(image)
+        let buffer = baseAddress!.assumingMemoryBound(to: UInt8.self)
+
+        var ptrInpainting = UnsafeMutablePointer<Float>(OpaquePointer(inpainting.dataPointer))
+        ptrInpainting = ptrInpainting.advanced(by: 0)
+        var ptrMask = UnsafeMutablePointer<Float>(OpaquePointer(mask.dataPointer))
+        ptrMask = ptrMask.advanced(by: 0)
+        var ptrOutput = UnsafeMutablePointer<Float>(OpaquePointer(output.dataPointer))
+        ptrOutput = ptrOutput.advanced(by: 0)
+
+        let cStride = width * height
+
+        for y in 0..<height {
+            for x in 0..<width {
+                let index = y*bytesPerRow+x*4
+                if ptrMask[y*width + x] != 0 {
+                    ptrOutput[y*width + x + cStride * 0] = ptrInpainting[y*width + x + cStride * 0]
+                    ptrOutput[y*width + x + cStride * 1] = ptrInpainting[y*width + x + cStride * 1]
+                    ptrOutput[y*width + x + cStride * 2] = ptrInpainting[y*width + x + cStride * 2]
+                } else {
+                    ptrOutput[y*width + x + cStride * 0] = (Float)(buffer[index+1]) / 255.0
+                    ptrOutput[y*width + x + cStride * 1] = (Float)(buffer[index+2]) / 255.0
+                    ptrOutput[y*width + x + cStride * 2] = (Float)(buffer[index+3]) / 255.0
+                }
+            }
+        }
+    }
+
     func process(input: UIImage, completion: @escaping FilteringCompletion) {
         let startTime = CFAbsoluteTimeGetCurrent()
 
@@ -180,10 +211,13 @@ class ViewController: UIViewController {
         let model_edge = edge()
         let model_inpainting = inpainting()
 
+        let height = 320
+        let width = 320
+
         // Next steps are pretty heavy, better process them on another thread
         DispatchQueue.global().async {
             // 1 - Resize our input image
-            guard let inputImage = input.resize(to: CGSize(width: 320, height: 320)) else {
+            guard let inputImage = input.resize(to: CGSize(width: width, height: height)) else {
                 completion(nil, EdgeConnectError.resizeError)
                 return
             }
@@ -194,28 +228,28 @@ class ViewController: UIViewController {
                 return
             }
 
-            guard let mlGray = try? MLMultiArray(shape: [1, 320, 320], dataType: MLMultiArrayDataType.float32) else {
+            guard let mlGray = try? MLMultiArray(shape: [1, NSNumber(value: width), NSNumber(value: height)], dataType: MLMultiArrayDataType.float32) else {
                 completion(nil, EdgeConnectError.allocError)
                 return
             }
 
-            self.getGrayImage(pixelBuffer: cvBufferInput, data: mlGray, height: 320, width: 320)
+            self.getGrayImage(pixelBuffer: cvBufferInput, data: mlGray, height: height, width: width)
             //let image = mlGray.image(min: 0, max: 1, axes: (0, 1, 2))
 
-            guard let mlMask = try? MLMultiArray(shape: [1, 320, 320], dataType: MLMultiArrayDataType.float32) else {
+            guard let mlMask = try? MLMultiArray(shape: [1, NSNumber(value: width), NSNumber(value: height)], dataType: MLMultiArrayDataType.float32) else {
                 completion(nil, EdgeConnectError.allocError)
                 return
             }
 
-            self.getMask(pixelBuffer: cvBufferInput, data: mlMask, height: 320, width: 320)
+            self.getMask(pixelBuffer: cvBufferInput, data: mlMask, height: height, width: width)
             //let image = mlMask.image(min: 0, max: 1, axes: (0, 1, 2))
 
-            guard let mlInputEdge = try? MLMultiArray(shape: [3, 320, 320], dataType: MLMultiArrayDataType.float32) else {
+            guard let mlInputEdge = try? MLMultiArray(shape: [3, NSNumber(value: width), NSNumber(value: height)], dataType: MLMultiArrayDataType.float32) else {
                 completion(nil, EdgeConnectError.allocError)
                 return
             }
 
-            self.prepareEdgeInput(gray: mlGray, edge: mlMask, mask: mlMask, input: mlInputEdge, height: 320, width: 320)
+            self.prepareEdgeInput(gray: mlGray, edge: mlMask, mask: mlMask, input: mlInputEdge, height: height, width: width)
 
             guard let inputEdge = try? edgeInput(input_1: mlInputEdge) else {
                 completion(nil, EdgeConnectError.allocError)
@@ -229,12 +263,12 @@ class ViewController: UIViewController {
             //let image = edgeOutput._153.image(min: 0, max: 1, axes: (0, 1, 2))
 
             // 3 - InPainting model
-            guard let mlInputInpainting = try? MLMultiArray(shape: [4, 320, 320], dataType: MLMultiArrayDataType.float32) else {
+            guard let mlInputInpainting = try? MLMultiArray(shape: [4, NSNumber(value: width), NSNumber(value: height)], dataType: MLMultiArrayDataType.float32) else {
                 completion(nil, EdgeConnectError.allocError)
                 return
             }
 
-            self.prepareInpaintingInput(image: cvBufferInput, mask: mlMask, edge: edgeOutput._153, input: mlInputInpainting, height: 320, width: 320)
+            self.prepareInpaintingInput(image: cvBufferInput, mask: mlMask, edge: edgeOutput._153, input: mlInputInpainting, height: height, width: width)
 
             guard let inputInpainting = try? inpaintingInput(input_1: mlInputInpainting) else {
                 completion(nil, EdgeConnectError.allocError)
@@ -245,7 +279,15 @@ class ViewController: UIViewController {
                 completion(nil, EdgeConnectError.predictionError)
                 return
             }
-            let image = inpaintingOutput._173.image(min: 0, max: 1, axes: (0, 1, 2))
+            //let image = inpaintingOutput._173.image(min: 0, max: 1, axes: (0, 1, 2))
+
+            guard let mlOutput = try? MLMultiArray(shape: [3, NSNumber(value: width), NSNumber(value: height)], dataType: MLMultiArrayDataType.float32) else {
+                completion(nil, EdgeConnectError.allocError)
+                return
+            }
+
+            self.mergeOutputImage(image: cvBufferInput, inpainting: inpaintingOutput._173, mask: mlMask, output: mlOutput, height: height, width: width)
+            let image = mlOutput.image(min: 0, max: 1, axes: (0, 1, 2))
 
             // 4 - Hand result to main thread
             DispatchQueue.main.async {
