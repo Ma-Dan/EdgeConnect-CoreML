@@ -17,11 +17,14 @@ An example of [EdgeConnect Model](https://github.com/knazeri/edge-connect) on iO
 How to convert pytorch model to CoreML model:
 
 1. Run [modified edge-connect code](https://github.com/Ma-Dan/edge-connect) to remove spectral normalization and convert to ONNX model.
+
 ```shell
 python test.py --checkpoints ./checkpoints/places2 --input ./examples/test/places2 --output ./results
 ```
+
 Modify [line 158](https://github.com/Ma-Dan/edge-connect/blob/master/src/models.py#L158) to change input resolution.
 Modify checkpoint argument to use other pretrained weights. This example uses places2 weight.
+
 2. Run [ONNX to CoreML converter](https://github.com/onnx/onnx-coreml) on ONNX files to get CoreML models.
 
 
