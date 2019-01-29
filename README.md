@@ -24,6 +24,7 @@ Modify [line 158](https://github.com/Ma-Dan/edge-connect/blob/master/src/models.
 Modify checkpoint argument to use other pretrained weights. This example uses places2 weight.
 2. Run [ONNX to CoreML converter](https://github.com/onnx/onnx-coreml) on ONNX files to get CoreML models.
 
+
 ##Todo
 
 1. Add Canny edge detecion preprocess to get more accurate edge output.
