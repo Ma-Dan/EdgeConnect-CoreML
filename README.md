@@ -21,14 +21,13 @@ How to convert pytorch model to CoreML model:
 ```shell
 python test.py --checkpoints ./checkpoints/places2 --input ./examples/test/places2 --output ./results
 ```
-
 Modify [line 158](https://github.com/Ma-Dan/edge-connect/blob/master/src/models.py#L158) to change input resolution.
+
 Modify checkpoint argument to use other pretrained weights. This example uses places2 weight.
 
 2. Run [ONNX to CoreML converter](https://github.com/onnx/onnx-coreml) on ONNX files to get CoreML models.
 
-
-##Todo
+## Todo
 
 1. Add Canny edge detecion preprocess to get more accurate edge output.
 2. Apply mask from touch screen input.
