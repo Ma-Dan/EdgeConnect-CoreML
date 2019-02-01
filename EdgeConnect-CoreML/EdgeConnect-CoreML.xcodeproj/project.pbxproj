@@ -20,7 +20,60 @@
 		3741E7C121FDE50000C745CE /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3741E7C021FDE50000C745CE /* Math.swift */; };
 		3741E7C421FDF19600C745CE /* MLMultiArray+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3741E7C221FDF19600C745CE /* MLMultiArray+Image.swift */; };
 		3741E7C521FDF19600C745CE /* CGImage+RawBytes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3741E7C321FDF19600C745CE /* CGImage+RawBytes.swift */; };
+		37A8EFE12204964900665138 /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37A8EFDB2204963400665138 /* GPUImage.framework */; };
+		37A8EFE322049C5800665138 /* GPUImage.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 37A8EFDB2204963400665138 /* GPUImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		37A8EFD62204963400665138 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 37A8EFCF2204963300665138 /* GPUImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BC6E7CAB1C39A9D8006DF678;
+			remoteInfo = GPUImage_macOS;
+		};
+		37A8EFD82204963400665138 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 37A8EFCF2204963300665138 /* GPUImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BC6E7CB51C39A9D8006DF678;
+			remoteInfo = GPUImageTests_macOS;
+		};
+		37A8EFDA2204963400665138 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 37A8EFCF2204963300665138 /* GPUImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BC9E34E91E524A2200B8604F;
+			remoteInfo = GPUImage_iOS;
+		};
+		37A8EFDC2204963400665138 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 37A8EFCF2204963300665138 /* GPUImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BC9E34F11E524A2200B8604F;
+			remoteInfo = GPUImageTests_iOS;
+		};
+		37A8EFDE2204964000665138 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 37A8EFCF2204963300665138 /* GPUImage.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BC9E34E81E524A2200B8604F;
+			remoteInfo = GPUImage_iOS;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		37A8EFE222049C4000665138 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				37A8EFE322049C5800665138 /* GPUImage.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		3741E79C21FD51AB00C745CE /* EdgeConnect-CoreML.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EdgeConnect-CoreML.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -38,6 +91,7 @@
 		3741E7C021FDE50000C745CE /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
 		3741E7C221FDF19600C745CE /* MLMultiArray+Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MLMultiArray+Image.swift"; sourceTree = "<group>"; };
 		3741E7C321FDF19600C745CE /* CGImage+RawBytes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGImage+RawBytes.swift"; sourceTree = "<group>"; };
+		37A8EFCF2204963300665138 /* GPUImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GPUImage.xcodeproj; path = "EdgeConnect-CoreML/framework/GPUImage.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37A8EFE12204964900665138 /* GPUImage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,8 +109,10 @@
 		3741E79321FD51AB00C745CE = {
 			isa = PBXGroup;
 			children = (
+				37A8EFCF2204963300665138 /* GPUImage.xcodeproj */,
 				3741E79E21FD51AB00C745CE /* EdgeConnect-CoreML */,
 				3741E79D21FD51AB00C745CE /* Products */,
+				37A8EFE02204964900665138 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -96,6 +153,24 @@
 			path = coreml_models;
 			sourceTree = "<group>";
 		};
+		37A8EFD02204963300665138 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				37A8EFD72204963400665138 /* GPUImage.framework */,
+				37A8EFD92204963400665138 /* GPUImageTests_macOS.xctest */,
+				37A8EFDB2204963400665138 /* GPUImage.framework */,
+				37A8EFDD2204963400665138 /* GPUImageTests_iOS.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		37A8EFE02204964900665138 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -106,10 +181,12 @@
 				3741E79821FD51AB00C745CE /* Sources */,
 				3741E79921FD51AB00C745CE /* Frameworks */,
 				3741E79A21FD51AB00C745CE /* Resources */,
+				37A8EFE222049C4000665138 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				37A8EFDF2204964000665138 /* PBXTargetDependency */,
 			);
 			name = "EdgeConnect-CoreML";
 			productName = "EdgeConnect-CoreML";
@@ -142,12 +219,49 @@
 			mainGroup = 3741E79321FD51AB00C745CE;
 			productRefGroup = 3741E79D21FD51AB00C745CE /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 37A8EFD02204963300665138 /* Products */;
+					ProjectRef = 37A8EFCF2204963300665138 /* GPUImage.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				3741E79B21FD51AB00C745CE /* EdgeConnect-CoreML */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		37A8EFD72204963400665138 /* GPUImage.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = GPUImage.framework;
+			remoteRef = 37A8EFD62204963400665138 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		37A8EFD92204963400665138 /* GPUImageTests_macOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = GPUImageTests_macOS.xctest;
+			remoteRef = 37A8EFD82204963400665138 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		37A8EFDB2204963400665138 /* GPUImage.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = GPUImage.framework;
+			remoteRef = 37A8EFDA2204963400665138 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		37A8EFDD2204963400665138 /* GPUImageTests_iOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = GPUImageTests_iOS.xctest;
+			remoteRef = 37A8EFDC2204963400665138 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		3741E79A21FD51AB00C745CE /* Resources */ = {
@@ -181,6 +295,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		37A8EFDF2204964000665138 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GPUImage_iOS;
+			targetProxy = 37A8EFDE2204964000665138 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		3741E7A321FD51AB00C745CE /* Main.storyboard */ = {

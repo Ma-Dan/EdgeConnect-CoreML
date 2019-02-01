@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreML
+import GPUImage
 
 class ViewController: UIViewController {
     typealias FilteringCompletion = ((UIImage?, Error?) -> ())
@@ -17,6 +18,10 @@ class ViewController: UIViewController {
     @IBOutlet private var buttonHolderView: UIView!
     @IBOutlet private var applyButton: UIButton!
     @IBOutlet private var loaderWidthConstraint: NSLayoutConstraint!
+
+    var picture:RawDataInput!
+    var filter:CannyEdgeDetection!
+    var edges:RawDataOutput!
 
     var imagePicker = UIImagePickerController()
     var isProcessing : Bool = false {
@@ -132,10 +137,11 @@ class ViewController: UIViewController {
             for x in 0..<width {
                 if ptrMask[y*width + x] != 0 {
                     ptrInput[y*width + x + cStride * 0] = ptrMask[y*width + x]
+                    ptrInput[y*width + x + cStride * 1] = 0
                 } else {
                     ptrInput[y*width + x + cStride * 0] = ptrGray[y*width + x]
+                    ptrInput[y*width + x + cStride * 1] = ptrEdge[y*width + x]
                 }
-                ptrInput[y*width + x + cStride * 1] = 0
                 ptrInput[y*width + x + cStride * 2] = ptrMask[y*width + x]
             }
         }
@@ -204,6 +210,38 @@ class ViewController: UIViewController {
         }
     }
 
+    func writeEdgeInputArray(input: CVPixelBuffer, height: Int, width: Int) -> [UInt8] {
+        CVPixelBufferLockBaseAddress(input, CVPixelBufferLockFlags(rawValue: 0))
+        let baseAddress = CVPixelBufferGetBaseAddress(input)
+        let bytesPerRow = CVPixelBufferGetBytesPerRow(input)
+        let buffer = baseAddress!.assumingMemoryBound(to: UInt8.self)
+    
+        var output = [UInt8](repeating:0, count:height * width * 4)
+
+        for y in 0..<height {
+            for x in 0..<width {
+                let index = y*bytesPerRow+x*4
+                output[index] = buffer[index+1]
+                output[index+1] = buffer[index+2]
+                output[index+2] = buffer[index+3]
+                output[index+3] = 255
+            }
+        }
+
+        return output
+    }
+
+    func readEdgeArray(input: [UInt8], output: MLMultiArray, height: Int, width: Int) {
+        var ptrOutput = UnsafeMutablePointer<Float>(OpaquePointer(output.dataPointer))
+        ptrOutput = ptrOutput.advanced(by: 0)
+
+        for y in 0..<height {
+            for x in 0..<width {
+                ptrOutput[y*width+x] = Float(input[y*width+x]) / 255.0
+            }
+        }
+    }
+
     func process(input: UIImage, completion: @escaping FilteringCompletion) {
         let startTime = CFAbsoluteTimeGetCurrent()
 
@@ -233,8 +271,32 @@ class ViewController: UIViewController {
                 return
             }
 
+            guard let mlEdge = try? MLMultiArray(shape: [1, NSNumber(value: width), NSNumber(value: height)], dataType: MLMultiArrayDataType.float32) else {
+                completion(nil, EdgeConnectError.allocError)
+                return
+            }
+
             self.getGrayImage(pixelBuffer: cvBufferInput, data: mlGray, height: height, width: width)
             //let image = mlGray.image(min: 0, max: 1, axes: (0, 1, 2))
+
+            let edgeInputImage = self.writeEdgeInputArray(input: cvBufferInput, height: height, width: width)
+            var edgeImage = [UInt8](repeating:0, count:height * width)
+
+            self.edges = RawDataOutput()
+            self.edges.dataAvailableCallback = { data in
+                for y in 0..<height {
+                    for x in 0..<width {
+                        edgeImage[y*width+x] = data[(y*width+x)*4]
+                    }
+                }
+            }
+            self.picture = RawDataInput()
+            self.filter = CannyEdgeDetection()
+            self.picture --> self.filter --> self.edges
+            self.picture.uploadBytes(edgeInputImage, size:Size(width:Float(width), height:Float(height)), pixelFormat:.rgba)
+
+            self.readEdgeArray(input: edgeImage, output: mlEdge, height: height, width: width)
+            //let image = mlEdge.image(min: 0, max: 1, axes: (0, 1, 2))
 
             guard let mlMask = try? MLMultiArray(shape: [1, NSNumber(value: width), NSNumber(value: height)], dataType: MLMultiArrayDataType.float32) else {
                 completion(nil, EdgeConnectError.allocError)
@@ -249,7 +311,7 @@ class ViewController: UIViewController {
                 return
             }
 
-            self.prepareEdgeInput(gray: mlGray, edge: mlMask, mask: mlMask, input: mlInputEdge, height: height, width: width)
+            self.prepareEdgeInput(gray: mlGray, edge: mlEdge, mask: mlMask, input: mlInputEdge, height: height, width: width)
 
             guard let inputEdge = try? edgeInput(input_1: mlInputEdge) else {
                 completion(nil, EdgeConnectError.allocError)
