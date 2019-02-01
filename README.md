@@ -6,11 +6,12 @@ An example of [EdgeConnect Model](https://github.com/knazeri/edge-connect) on iO
 
 ## About EdgeConnect
 
-[EdgeConnect](https://github.com/knazeri/edge-connect) is a Generative Image Inpainting with Adversarial Edge Learning. [https://arxiv.org/abs/1901.00212](https://arxiv.org/abs/1901.00212)
+[EdgeConnect](https://github.com/knazeri/edge-connect) [(https://github.com/knazeri/edge-connect)](https://github.com/knazeri/edge-connect) is a Generative Image Inpainting with Adversarial Edge Learning. [https://arxiv.org/abs/1901.00212](https://arxiv.org/abs/1901.00212)
 
 ## Code references
-- UI code: [NSTDemo](https://github.com/kirualex/NSTDemo)
-- CoreMLHelpers code: [CoreMLHelpers](https://github.com/hollance/CoreMLHelpers)
+- UI code: [NSTDemo](https://github.com/kirualex/NSTDemo) [(https://github.com/kirualex/NSTDemo)](https://github.com/kirualex/NSTDemo)
+- CoreMLHelpers code: [CoreMLHelpers](https://github.com/hollance/CoreMLHelpers) [(https://github.com/hollance/CoreMLHelpers)](https://github.com/hollance/CoreMLHelpers)
+- Canny Edge Detection: [GPUImage2](https://github.com/BradLarson/GPUImage2) [(https://github.com/BradLarson/GPUImage2)](https://github.com/BradLarson/GPUImage2)
 
 ## Usage
 
@@ -29,5 +30,5 @@ Modify checkpoint argument to use other pretrained weights. This example uses pl
 
 ## Todo
 
-1. Add Canny edge detecion preprocess to get more accurate edge output.
+1. Optimize Canny edge detection to get more accurate edge output.
 2. Apply mask from touch screen input.
